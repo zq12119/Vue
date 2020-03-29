@@ -168,12 +168,12 @@
                         </thead>
                         <tbody>
                             <tr v-for="(item,index) in orders">
-                                <td v-once>{{item.brandname}}</td>
-                                <td v-once>{{item.time}}</td>
-                                <td v-once>{{item.price}}</td>
+                                <td>{{item.brandname}}</td>
+                                <td>{{item.time}}</td>
+                                <td>{{item.price}}</td>
                                 <td>
                                     <input type="button" value="- " @click="sub(index)">
-                                    <span v-once>{{item.num}}</span>
+                                    <span>{{item.num}}</span>
                                     <input type="button" value="+" @click="add(index)">
                                 </td>
                                 <td><button @click="del(index)">删除</button></td>
