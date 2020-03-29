@@ -51,7 +51,7 @@
                             </tr>
                         </tbody>
                         <tr>
-                            <td>订单总额:<span v-model="sum">{{sum}}</span></td>
+                            <td console="3">订单总额:<span @click="sum(index)">{{sum}}</span></td>
                         </tr>
                     </table>
 
@@ -93,17 +93,29 @@
             methods: {
                 add: function (index) {
                     this.orders[index].num++;
-                    this.sum = this.orders[index].price * this.orders[index].num;  
+                    this.sum= this.orders[index].price * this.orders[index].num;  
                 },
                
                 sub: function (index) {
                     if (this.orders[index].num > 0) {
                         this.orders[index].num--;
+                        var a=0;
+                   this.sum = this.orders[index].price * this.orders[index].num; 
+                   
                     } else {
                         alert('购买数量不能为负值');
                     }
-                   this.sum = this.orders[index].price * this.orders[index].num; 
                 },
+                sum:function(index){
+                    let ad = 0;
+                    this.orders.forEach(item => {
+                        ad += this.orders[index].price * this.orders[index].num; 
+                    });
+                    this.sum=ad;
+                
+                },
+                
+                
                 btn: function (index) {
                     var date = new Date();
                     var fuhao = "-";
@@ -123,8 +135,6 @@
                         price: this.price,
                         num: this.num,
                     })
-                    var a=this.orders[index].price*this.orders[indexe].num;
-                    this.sum+=a;
 
                 },
                 del: function (index) {
@@ -133,13 +143,13 @@
                 search: function () {
                     var order;
                     for (let i = 0; i < this.orders.length; i++) {
-                        if ((this.orders[i].brandname == this.select) && this.select != 0) {
+                        if ((this.orders[i].brandname == this.select) && this.select != -1) {
                             order = this.orders[i];
                             this.orders.splice(0, this.orders.length);
                             this.orders.push(order);
                         }
                     }
-                    this.sum=this.orders[index].price*this.orders[indexe].num;
+                    this.sum+=this.orders[index].price*this.orders[indexe].num;
                 },
             }
 
